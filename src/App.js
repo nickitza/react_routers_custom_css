@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch, } from "react-router-dom";
+import About from "./components/About";
+import Home from "./components/Home";
+import NoMatch from "./components/NoMatch";
+import Navbar from "./components/Navbar";
+import Blog from "./components/Blog";
+//we are now treating App.js like a routing station
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => (
+  <>
+    <Navbar />
+      <Switch>
+        {/* // must pass path and component as prop to a route component */}
+        <Route exact path="/" component={ Home } />
+        <Route exact path="/about" component={ About } />
+        <Route exact path="/blog" component={ Blog } />
+        <Route component={ NoMatch }/>
+        {/* error page needs to be at bottom of components/routes */}
+      </Switch>
+  </>
+);
 
 export default App;
